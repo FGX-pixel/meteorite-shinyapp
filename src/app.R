@@ -2,22 +2,18 @@ library(shiny)
 library(maps)
 
 # setup
-dta <- read.csv(file = "meteorite.csv", header = TRUE, sep = ";", stringsAsFactors = FALSE)
-firstyear <- min(as.numeric(dta$year))
-lastyear <- max(as.numeric(dta$year))
+{
+  dta <- read.csv(file = "meteorite.csv", header = TRUE, sep = ";", stringsAsFactors = FALSE)
+  firstyear <- min(as.numeric(dta$year))
+  lastyear <- max(as.numeric(dta$year))
+  introstring <- xml2::read_html("text.html")
+}
 
-# functions
+# update data function
 updateData <- function(startYear, endYear)
 {
   return(dta[{dta$year>=startYear & dta$year <= endYear},])
 }
-updatePoints <- function(newData)
-{
-  yco <- c(as.numeric(unlist(newData["reclat"])))
-  xco <- c(as.numeric(unlist(newData["reclong"])))
-  points(xco,yco, col="red", pch=4, lwd = 2)
-}
-introstring <- xml2::read_html("text.html")
 
 # shiny
 ui <- fluidPage(
@@ -27,6 +23,7 @@ ui <- fluidPage(
                 label = "select timeframe",
                 min = firstyear,
                 max = lastyear,
+                width = "100%",
                 value = c(firstyear, lastyear),
     ),
     plotOutput(outputId = "map"),
@@ -45,7 +42,12 @@ server <- function(input, output, session) {
   output$map <- renderPlot(
     {    
       map("world", fill=TRUE, col="white", bg="lightskyblue", ylim=c(-100, 100), mar=c(0,0,0,0))
-      updatePoints(rDta())
+      points(c(as.numeric(unlist(rDta()["reclong"]))),
+             c(as.numeric(unlist(rDta()["reclat"]))),
+             col="red",
+             pch=4,
+             lwd = 2
+      )
     }
   )
   output$hist <- renderPlot(
