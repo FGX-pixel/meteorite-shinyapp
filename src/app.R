@@ -3,6 +3,11 @@ library(maps)
 
 # setup
 {
+  # call prep file if meteorites not yet loaded
+  if(file.exists("meteorite.csv")){
+    source("prep_meteorite.R", local = FALSE)
+  }
+  
   dta <- read.csv(file = "meteorite.csv", header = TRUE, sep = ";", stringsAsFactors = FALSE)
   firstyear <- min(as.numeric(dta$year))
   lastyear <- max(as.numeric(dta$year))
