@@ -37,3 +37,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# fgx
+# csv data
+*.csv
+
+# rsconnect folder
+src/rsconnect/
