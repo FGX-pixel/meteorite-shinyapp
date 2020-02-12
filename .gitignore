@@ -41,6 +41,3 @@ vignettes/*.pdf
 # fgx
 # csv data
 *.csv
-
-# rsconnect folder
-src/rsconnect/

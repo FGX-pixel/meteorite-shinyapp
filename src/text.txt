@@ -1,0 +1,3 @@
+<p>
+This web app gives an overview on observed meteorite crashes since the first sufficiently documented impact in the year 860. Use the slider to choose any timeframe and the map will dynamically update. Scrolling down there is a histogram of meteorite weight distribution which will also adapt to the selected timeframe.
+</p>

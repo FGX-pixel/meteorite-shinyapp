@@ -1,0 +1,10 @@
+name: meteorite_app
+title:
+username:
+account: fgx-pixel
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1724578
+bundleId: 2795888
+url: https://fgx-pixel.shinyapps.io/meteorite_app/
+when: 1581534869.38246
